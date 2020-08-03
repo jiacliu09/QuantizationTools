@@ -103,9 +103,16 @@ src include the source codes for compiler，quantization，reconstructor，utils
 ---
 ### 3. Step-by-step  expample
 
-### step 1: get original model
+### step 1: get original model and test images
 
-[we use gluoncv resnet50v1b (top1=77.67 on imagenet) as an example here](https://drive.google.com/drive/folders/1Rz0Z6UQbypHeVxr8lNAwef0n-MVYDZfM?usp=sharing)
+* We use gluoncv resnet50v1b (top1=77.67 on imagenet) as an example here. [download](https://drive.google.com/drive/folders/1Rz0Z6UQbypHeVxr8lNAwef0n-MVYDZfM?usp=sharing)
+
+* images.tar.gz [download](http://moffett.techx.cn:9001/): imagenet images for quantization calibration and quantization test. Place this image folder under `./models`
+
+* imagenet_eval_sub.tar.gz [download](http://moffett.techx.cn:9001/): One image per class from  the validation dataset of imagenet for testing top1 after quantization. These images should be placed according to `./resources/imagenet_fulltest.list`.    
+
+* imagenet_val.tar.gz [download](http://moffett.techx.cn:9001/): the validation dataset of imagenet for testing top1 after quantization. These images should be placed according to `./resources/imagenet_fulltest.list`.    
+
 
 ### step 2: frontend model compiler test
 compile the sparse mxnet model into moffett IR
@@ -212,5 +219,5 @@ python3 examples/test_imagenet_quantize_acc.py --config-file configs/resnet50_v1
 ```
 | model |  top 1 before/after quantization |
 | --- | --- |
-| resnet50 v1b   |  0.786 / 0.779      |
+| resnet50 v1b   |  0.7768 / 0.7688      |
 
