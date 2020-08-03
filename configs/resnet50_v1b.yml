@@ -1,0 +1,17 @@
+MODEL:
+    graph: 'moffett_ir/IR_fused_for_CModel_graph.json'
+    params: 'moffett_ir/IR_fused_for_CModel_params.npz'
+QUAN:
+    strategy: 'symmetry_max' # minmax, null, scale_shift, symmetry_max
+    # strategy: 'null' # minmax, null, scale_shift, symmetry_max
+    qconfig:
+        weight_quan: 'perchannel' # perchannel , perlayer
+        table: 'calibrations/resnet50_v1b.json'
+        image_path: './models/images/calibration'
+EVALUATION:
+    input_images: './models/images/test'
+    label_file: 'resources/imagenet_lsvrc_2015_synsets.txt'
+    image_file: 'resources/imagenet_fulltest.list'
+    input_node: '0:0'
+    output_node: '506:0'
+SAVE_PATH: 'models/resnet50v1b/resnet50_v1b_quan.pb'
